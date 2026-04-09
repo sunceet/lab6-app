@@ -1,0 +1,15 @@
+services:
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+
+  order_service:
+    build: ./order_service
+    depends_on:
+      - redis
+
+  notification_service:
+    build: ./notification_service
+    depends_on:
+      - redis
